@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<ul class="large">
+    <li><a href="{% url create %}">Начать конференцию</a></li>
+    <li><a href="{% url meetings %}">Текущие конеренции</a></li>
+</ul>
+{% else %}
+<center>Сервер удаленных консультаций</center>
+{% endif %}
+{% endblock %}

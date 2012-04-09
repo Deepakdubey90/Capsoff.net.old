@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+{% block title %}Join meeting{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+{% csrf_token %}
+<h2>Присоединиться '{{ meeting_name }}'</h2>
+<p>Пригласите других при помощи <a href="/meeting/{{ meeting_name }}/join">этой ссылки</a></p>
+<table>
+    {{form}}
+    <tr>
+        <th></th>
+        <td>
+            <input type="submit" value="Присоединиться">
+        </td>
+    </tr>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,3 @@
+- fields: { name: test }
+model: frontend.degree
+pk: 1

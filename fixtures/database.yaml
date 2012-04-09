@@ -1,0 +1,949 @@
+
+- model: frontend.chair
+  pk: 1
+  fields:
+    name: Гуманитарне науки
+
+- model: frontend.chair
+  pk: 2
+  fields:
+    name: Информатика и вычислетельная техника
+
+- model: frontend.chair
+  pk: 3
+  fields:
+    name: Автомобили и Автомобильное хозяйство
+
+- model: frontend.degree
+  pk: 0
+  fields:
+    name: Кандидат технических наук
+
+- model: frontend.degree
+  pk: 1
+  fields:
+    name: Кандидат гуманитарных наук
+
+- model: frontend.degree
+  pk: 2
+  fields:
+    name: Кандидат экономических наук
+
+- model: auth.user
+  pk: 1
+  fields:
+    first_name: 'Василий'
+    last_name: 'Петров'
+    username: user_1
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 1
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 2
+  fields:
+    first_name: 'Олег'
+    last_name: 'Сергеев'
+    username: user_2
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 2
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 3
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Сергеев'
+    username: user_3
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 3
+  fields:
+    chair: 2    
+    degree: 1
+
+- model: auth.user
+  pk: 4
+  fields:
+    first_name: 'Алексей'
+    last_name: 'Петров'
+    username: user_4
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 4
+  fields:
+    chair: 3    
+    degree: 3
+
+- model: auth.user
+  pk: 5
+  fields:
+    first_name: 'Василий'
+    last_name: 'Сергеев'
+    username: user_5
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 5
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 6
+  fields:
+    first_name: 'Степан'
+    last_name: 'Петров'
+    username: user_6
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 6
+  fields:
+    chair: 2    
+    degree: 1
+
+- model: auth.user
+  pk: 7
+  fields:
+    first_name: 'Петр'
+    last_name: 'Сергеев'
+    username: user_7
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 7
+  fields:
+    chair: 2    
+    degree: 2
+
+- model: auth.user
+  pk: 8
+  fields:
+    first_name: 'Антон'
+    last_name: 'Иванов'
+    username: user_8
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 8
+  fields:
+    chair: 1    
+    degree: 1
+
+- model: auth.user
+  pk: 9
+  fields:
+    first_name: 'Олег'
+    last_name: 'Антонов'
+    username: user_9
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 9
+  fields:
+    chair: 3    
+    degree: 3
+
+- model: auth.user
+  pk: 10
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Васильев'
+    username: user_10
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 10
+  fields:
+    chair: 1    
+    degree: 2
+
+- model: auth.user
+  pk: 11
+  fields:
+    first_name: 'Петр'
+    last_name: 'Петров'
+    username: user_11
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 11
+  fields:
+    chair: 1    
+    degree: 2
+
+- model: auth.user
+  pk: 12
+  fields:
+    first_name: 'Петр'
+    last_name: 'Сергеев'
+    username: user_12
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 12
+  fields:
+    chair: 3    
+    degree: 3
+
+- model: auth.user
+  pk: 13
+  fields:
+    first_name: 'Олег'
+    last_name: 'Антонов'
+    username: user_13
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 13
+  fields:
+    chair: 1    
+    degree: 2
+
+- model: auth.user
+  pk: 14
+  fields:
+    first_name: 'Василий'
+    last_name: 'Сергеев'
+    username: user_14
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 14
+  fields:
+    chair: 2    
+    degree: 1
+
+- model: auth.user
+  pk: 15
+  fields:
+    first_name: 'Олег'
+    last_name: 'Петров'
+    username: user_15
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 15
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 16
+  fields:
+    first_name: 'Алексей'
+    last_name: 'Антонов'
+    username: user_16
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 16
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 17
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Иванов'
+    username: user_17
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 17
+  fields:
+    chair: 2    
+    degree: 2
+
+- model: auth.user
+  pk: 18
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Антонов'
+    username: user_18
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 18
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 19
+  fields:
+    first_name: 'Антон'
+    last_name: 'Васильев'
+    username: user_19
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 19
+  fields:
+    chair: 2    
+    degree: 1
+
+- model: auth.user
+  pk: 20
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Иванов'
+    username: user_20
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 20
+  fields:
+    chair: 2    
+    degree: 3
+
+- model: auth.user
+  pk: 21
+  fields:
+    first_name: 'Степан'
+    last_name: 'Васильев'
+    username: user_21
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 21
+  fields:
+    chair: 3    
+    degree: 2
+
+- model: auth.user
+  pk: 22
+  fields:
+    first_name: 'Василий'
+    last_name: 'Антонов'
+    username: user_22
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 22
+  fields:
+    chair: 2    
+    degree: 1
+
+- model: auth.user
+  pk: 23
+  fields:
+    first_name: 'Олег'
+    last_name: 'Васильев'
+    username: user_23
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 23
+  fields:
+    chair: 3    
+    degree: 1
+
+- model: auth.user
+  pk: 24
+  fields:
+    first_name: 'Олег'
+    last_name: 'Антонов'
+    username: user_24
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 24
+  fields:
+    chair: 1    
+    degree: 2
+
+- model: auth.user
+  pk: 25
+  fields:
+    first_name: 'Иван'
+    last_name: 'Антонов'
+    username: user_25
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 25
+  fields:
+    chair: 3    
+    degree: 3
+
+- model: auth.user
+  pk: 26
+  fields:
+    first_name: 'Петр'
+    last_name: 'Иванов'
+    username: user_26
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 26
+  fields:
+    chair: 1    
+    degree: 3
+
+- model: auth.user
+  pk: 27
+  fields:
+    first_name: 'Иван'
+    last_name: 'Петров'
+    username: user_27
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 27
+  fields:
+    chair: 2    
+    degree: 2
+
+- model: auth.user
+  pk: 28
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Антонов'
+    username: user_28
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 28
+  fields:
+    chair: 3    
+    degree: 2
+
+- model: auth.user
+  pk: 29
+  fields:
+    first_name: 'Василий'
+    last_name: 'Иванов'
+    username: user_29
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 29
+  fields:
+    chair: 3    
+    degree: 1
+
+- model: auth.user
+  pk: 30
+  fields:
+    first_name: 'Василий'
+    last_name: 'Антонов'
+    username: user_30
+    password: sha2$147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.teacher
+  pk: 30
+  fields:
+    chair: 1    
+    degree: 2
+
+- model: frontend.studentgroup
+  pk: 1
+  fields:
+    chair:   1
+    curator: 22
+    name: 'Б-12'
+    enroll_year: 2015-08-01
+
+- model: frontend.studentgroup
+  pk: 2
+  fields:
+    chair:   3
+    curator: 4
+    name: 'Б-24'
+    enroll_year: 2018-08-01
+
+- model: frontend.studentgroup
+  pk: 3
+  fields:
+    chair:   3
+    curator: 16
+    name: 'АиАХ-27'
+    enroll_year: 2028-08-01
+
+- model: frontend.studentgroup
+  pk: 4
+  fields:
+    chair:   2
+    curator: 3
+    name: 'АиАХ-13'
+    enroll_year: 2023-08-01
+
+- model: frontend.studentgroup
+  pk: 5
+  fields:
+    chair:   2
+    curator: 30
+    name: 'ПГС-13'
+    enroll_year: 2007-08-01
+
+- model: frontend.studentgroup
+  pk: 6
+  fields:
+    chair:   1
+    curator: 22
+    name: 'АиАХ-13'
+    enroll_year: 2003-08-01
+
+- model: frontend.studentgroup
+  pk: 7
+  fields:
+    chair:   1
+    curator: 17
+    name: 'МО-21'
+    enroll_year: 2029-08-01
+
+- model: frontend.studentgroup
+  pk: 8
+  fields:
+    chair:   3
+    curator: 4
+    name: 'АиАХ-27'
+    enroll_year: 2026-08-01
+
+- model: frontend.studentgroup
+  pk: 9
+  fields:
+    chair:   3
+    curator: 12
+    name: 'ПГС-13'
+    enroll_year: 2010-08-01
+
+- model: frontend.studentgroup
+  pk: 10
+  fields:
+    chair:   3
+    curator: 20
+    name: 'ЭТС-15'
+    enroll_year: 2019-08-01
+
+- model: auth.user
+  pk: 31
+  fields:
+    first_name: 'Иван'
+    last_name: 'Иванов'
+    username: user_31
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 31
+  fields:    
+    group: 3
+
+
+- model: auth.user
+  pk: 32
+  fields:
+    first_name: 'Николай'
+    last_name: 'Петров'
+    username: user_32
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 32
+  fields:    
+    group: 1
+
+
+- model: auth.user
+  pk: 33
+  fields:
+    first_name: 'Степан'
+    last_name: 'Иванов'
+    username: user_33
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 33
+  fields:    
+    group: 8
+
+
+- model: auth.user
+  pk: 34
+  fields:
+    first_name: 'Василий'
+    last_name: 'Васильев'
+    username: user_34
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 34
+  fields:    
+    group: 1
+
+
+- model: auth.user
+  pk: 35
+  fields:
+    first_name: 'Василий'
+    last_name: 'Сергеев'
+    username: user_35
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 35
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 36
+  fields:
+    first_name: 'Иван'
+    last_name: 'Васильев'
+    username: user_36
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 36
+  fields:    
+    group: 4
+
+
+- model: auth.user
+  pk: 37
+  fields:
+    first_name: 'Василий'
+    last_name: 'Петров'
+    username: user_37
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 37
+  fields:    
+    group: 6
+
+
+- model: auth.user
+  pk: 38
+  fields:
+    first_name: 'Степан'
+    last_name: 'Иванов'
+    username: user_38
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 38
+  fields:    
+    group: 5
+
+
+- model: auth.user
+  pk: 39
+  fields:
+    first_name: 'Иван'
+    last_name: 'Иванов'
+    username: user_39
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 39
+  fields:    
+    group: 1
+
+
+- model: auth.user
+  pk: 40
+  fields:
+    first_name: 'Алексей'
+    last_name: 'Сергеев'
+    username: user_40
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 40
+  fields:    
+    group: 3
+
+
+- model: auth.user
+  pk: 41
+  fields:
+    first_name: 'Николай'
+    last_name: 'Антонов'
+    username: user_41
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 41
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 42
+  fields:
+    first_name: 'Степан'
+    last_name: 'Петров'
+    username: user_42
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 42
+  fields:    
+    group: 5
+
+
+- model: auth.user
+  pk: 43
+  fields:
+    first_name: 'Василий'
+    last_name: 'Иванов'
+    username: user_43
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 43
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 44
+  fields:
+    first_name: 'Иван'
+    last_name: 'Васильев'
+    username: user_44
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 44
+  fields:    
+    group: 4
+
+
+- model: auth.user
+  pk: 45
+  fields:
+    first_name: 'Петр'
+    last_name: 'Антонов'
+    username: user_45
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 45
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 46
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Васильев'
+    username: user_46
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 46
+  fields:    
+    group: 1
+
+
+- model: auth.user
+  pk: 47
+  fields:
+    first_name: 'Николай'
+    last_name: 'Петров'
+    username: user_47
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 47
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 48
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Иванов'
+    username: user_48
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 48
+  fields:    
+    group: 7
+
+
+- model: auth.user
+  pk: 49
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Петров'
+    username: user_49
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 49
+  fields:    
+    group: 4
+
+
+- model: auth.user
+  pk: 50
+  fields:
+    first_name: 'Алексей'
+    last_name: 'Васильев'
+    username: user_50
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 50
+  fields:    
+    group: 1
+
+
+- model: auth.user
+  pk: 51
+  fields:
+    first_name: 'Иван'
+    last_name: 'Васильев'
+    username: user_51
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 51
+  fields:    
+    group: 9
+
+
+- model: auth.user
+  pk: 52
+  fields:
+    first_name: 'Олег'
+    last_name: 'Антонов'
+    username: user_52
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 52
+  fields:    
+    group: 2
+
+
+- model: auth.user
+  pk: 53
+  fields:
+    first_name: 'Олег'
+    last_name: 'Петров'
+    username: user_53
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 53
+  fields:    
+    group: 6
+
+
+- model: auth.user
+  pk: 54
+  fields:
+    first_name: 'Алексей'
+    last_name: 'Васильев'
+    username: user_54
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 54
+  fields:    
+    group: 4
+
+
+- model: auth.user
+  pk: 55
+  fields:
+    first_name: 'Василий'
+    last_name: 'Петров'
+    username: user_55
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 55
+  fields:    
+    group: 3
+
+
+- model: auth.user
+  pk: 56
+  fields:
+    first_name: 'Сергей'
+    last_name: 'Петров'
+    username: user_56
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 56
+  fields:    
+    group: 3
+
+
+- model: auth.user
+  pk: 57
+  fields:
+    first_name: 'Антон'
+    last_name: 'Петров'
+    username: user_57
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 57
+  fields:    
+    group: 2
+
+
+- model: auth.user
+  pk: 58
+  fields:
+    first_name: 'Петр'
+    last_name: 'Васильев'
+    username: user_58
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 58
+  fields:    
+    group: 6
+
+
+- model: auth.user
+  pk: 59
+  fields:
+    first_name: 'Иван'
+    last_name: 'Сергеев'
+    username: user_59
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 59
+  fields:    
+    group: 5
+
+
+- model: auth.user
+  pk: 60
+  fields:
+    first_name: 'Олег'
+    last_name: 'Сергеев'
+    username: user_60
+    password: sha2147ad31215fd55112ce613a7883902bb306aa35bba879cd2dbe500b9
+
+- model: frontend.student  
+  pk: 60
+  fields:    
+    group: 5

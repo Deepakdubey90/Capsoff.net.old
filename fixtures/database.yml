@@ -1,0 +1,159 @@
+
+- model: frontend.user
+pk: 1
+fields:
+  first_name: Иван
+  last_name: Антонов
+  username: user_1
+
+
+- model: frontend.user
+pk: 2
+fields:
+  first_name: Олег
+  last_name: Васильев
+  username: user_2
+
+
+- model: frontend.user
+pk: 3
+fields:
+  first_name: Иван
+  last_name: Антонов
+  username: user_3
+
+
+- model: frontend.user
+pk: 4
+fields:
+  first_name: Петр
+  last_name: Сергеев
+  username: user_4
+
+
+- model: frontend.user
+pk: 5
+fields:
+  first_name: Василий
+  last_name: Антонов
+  username: user_5
+
+
+- model: frontend.user
+pk: 6
+fields:
+  first_name: Василий
+  last_name: Петров
+  username: user_6
+
+
+- model: frontend.user
+pk: 7
+fields:
+  first_name: Олег
+  last_name: Сергеев
+  username: user_7
+
+
+- model: frontend.user
+pk: 8
+fields:
+  first_name: Николай
+  last_name: 
+  username: user_8
+
+
+- model: frontend.user
+pk: 9
+fields:
+  first_name: Василий
+  last_name: Иванов
+  username: user_9
+
+
+- model: frontend.user
+pk: 10
+fields:
+  first_name: Антон
+  last_name: Петров
+  username: user_10
+
+
+- model: frontend.user
+pk: 11
+fields:
+  first_name: Степан
+  last_name: Сергеев
+  username: user_11
+
+
+- model: frontend.user
+pk: 12
+fields:
+  first_name: Антон
+  last_name: 
+  username: user_12
+
+
+- model: frontend.user
+pk: 13
+fields:
+  first_name: Иван
+  last_name: Васильев
+  username: user_13
+
+
+- model: frontend.user
+pk: 14
+fields:
+  first_name: Петр
+  last_name: Антонов
+  username: user_14
+
+
+- model: frontend.user
+pk: 15
+fields:
+  first_name: Олег
+  last_name: Васильев
+  username: user_15
+
+
+- model: frontend.user
+pk: 16
+fields:
+  first_name: Николай
+  last_name: Иванов
+  username: user_16
+
+
+- model: frontend.user
+pk: 17
+fields:
+  first_name: Алексей
+  last_name: 
+  username: user_17
+
+
+- model: frontend.user
+pk: 18
+fields:
+  first_name: Степан
+  last_name: Иванов
+  username: user_18
+
+
+- model: frontend.user
+pk: 19
+fields:
+  first_name: Сергей
+  last_name: Иванов
+  username: user_19
+
+
+- model: frontend.user
+pk: 20
+fields:
+  first_name: Олег
+  last_name: 
+  username: user_20
