@@ -1,4 +1,10 @@
-from django.db import models
+# -*- coding: utf-8 -*-
+
+from django.db.models import (Model, CharField, ForeignKey, DateTimeField, SmallIntegerField,
+                              BooleanField, DecimalField, TextField, FilePathField)
+
+from frontend.models import (StudentGroup, Student, Teaching)
+
 from django import forms
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -8,6 +14,7 @@ from urllib import urlencode
 from hashlib import sha1
 import xml.etree.ElementTree as ET
 import random
+
 
 def parse(response):
     try:
@@ -20,12 +27,21 @@ def parse(response):
     except:
         return None
 
-class Meeting(models.Model):
 
-    name = models.CharField(max_length=100, unique=True)
-    meeting_id = models.CharField(max_length=100, unique=True)
-    attendee_password = models.CharField(max_length=50)
-    moderator_password = models.CharField(max_length=50)
+class MeetingType(Model):
+    """Type of meeting"""
+    name = CharField(max_length=255)
+
+    def __unicode__(self):
+        return u'%s' % (self.name, )
+
+
+class Meeting(Model):
+
+    classroom = CharField(max_length=5)
+    group = ForeignKey(StudentGroup)
+    meeting_type = ForeignKey(MeetingType)
+    teaching = ForeignKey(Teaching)
 
     @classmethod
     def api_call(self, query, call):
@@ -168,3 +184,59 @@ class Meeting(models.Model):
         name = forms.CharField(label="Your name")
         password = forms.CharField(
             widget=forms.PasswordInput(render_value=False))
+
+
+class SingleMeeting(Meeting):
+    """Nonperiodic signle meeting"""
+    name = CharField(max_length=512)
+    desc = TextField()
+    date = DateTimeField()
+    is_over = BooleanField()
+
+
+class PeriodicMeeting(Meeting):
+    """Periodic schedule meeting"""
+    FLASHING_CHOICES = (
+                        ('OD', u'По нечетным неделям'),
+                        ('EV', u'По четным неделям'),
+                        ('NF', u'Не "мигающее" занятие')
+    )
+
+    WEEK_DAY_CHOICES = (
+                        ('1', u'Понедельник'),
+                        ('2', u'Вторник'),
+                        ('3', u'Среда'),
+                        ('4', u'Четверг'),
+                        ('5', u'Пятница'),
+                        ('6', u'Суббота'),
+                        ('7', u'Воскресенье'),
+                        )
+
+    PAIR_NUM_CHOICES = (
+                        ('1', u'1'),
+                        ('2', u'2'),
+                        ('3', u'3'),
+                        ('4', u'4'),
+                        ('5', u'5'),
+                        ('6', u'6'),
+                        ('7', u'7'),
+                        ('8', u'8'),
+                        )
+
+    flashing = CharField(max_length=2, choices=FLASHING_CHOICES)
+    week_day = CharField(max_length=2, choices=WEEK_DAY_CHOICES)
+    pair_num = CharField(max_length=2, choices=PAIR_NUM_CHOICES)
+
+
+class Record(Model):
+    """Record files of the meeting"""
+    meeting = ForeignKey(Meeting)
+    date = DateTimeField()
+    path = FilePathField(path="/path")
+
+
+class Attendance(Model):
+    """Student attendance on meetings"""
+    student = ForeignKey(Student)
+    meeting = ForeignKey(Meeting)
+    date = DateTimeField()

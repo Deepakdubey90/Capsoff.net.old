@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{user.username}}{% endblock title %}
+
+{% block css %}
+  tr td:first-child {
+    font-weight: bold;
+  }
+{% endblock css %}
+
+{% block content %}
+  <h1>
+   {% if user.teacher %}
+     Преподаватель
+   {% else %}
+      {% if user.student %}
+        Студент
+      {% else %}
+        Пользователь
+      {% endif %}
+   {% endif %}   
+  </h1>
+
+  <table cellspacing="15">    
+    <tr><td>Фамилия:</td><td>{{user.last_name}}</td></tr>
+    <tr><td>Имя:</td><td>{{user.first_name}}</td></tr>
+    <tr><td>Ник:</td><td>{{user.username}}</td></tr>
+
+    {% if user.teacher %}
+    <tr><td>Кафедра:</td><td>{{user.teacher.chair}}</td></tr>
+    <tr><td>Степень:</td><td>{{user.teacher.degree}}</td></tr>
+    {% endif %}
+
+    {% if user.student %}
+    <tr><td>Группа:</td><td>{{user.student.group}}</td></tr>
+    {% endif %}
+  </table>
+{% endblock content %}

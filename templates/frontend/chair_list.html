@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block title %}Список кафедр{% endblock title %}
+
+{% block css %}
+  .chair-list {
+    list-style: none;
+  }
+{% endblock css %}
+
+{% block content %}
+  <ul class="chair-list">
+  {% for chair in object_list %}
+    <li><a href="/frontend/chair/{{chair.pk}}">{{chair.name}}</a></li>
+  {% endfor %}
+  </ul>
+{% endblock content %}
