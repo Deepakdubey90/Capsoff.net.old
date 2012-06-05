@@ -4,7 +4,7 @@
     Выберите группу для просмотра расписания
     {% for group in group_list %}
         <div>
-            <a href="{% url secondary-schedule-group group.id %}">
+            <a href="{% url secondary-schedule-group group.id %}" class="group-entry">
                 {{ group }}
             </a>
         </div>

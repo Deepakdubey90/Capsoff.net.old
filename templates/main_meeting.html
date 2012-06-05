@@ -1,7 +1,7 @@
 {% extends "meeting.html" %}
 
 {% block info %}
-    <table>
+    <table class="meeting-info-labels">
         <tr>
             <td>Чередование:</td>
             <td>{{ meeting.periodicmeeting.get_flashing_display }}</td>

@@ -15,6 +15,7 @@ from urllib import urlencode
 from hashlib import sha1
 import xml.etree.ElementTree as ET
 import random
+from datetime import date
 
 
 def parse(response):
@@ -97,25 +98,17 @@ class Meeting(Model):
         else:
             return 'error'
 
-    def meeting_info(self, meeting_id, password):
+    def info(self):
         call = 'getMeetingInfo'
         query = urlencode((
             ('meetingID', self.id),
+            ('password', 'moder')
         ))
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
         r = parse(urlopen(url).read())
         if r:
-            # Create dict of values for easy use in template
-            d = {
-                'start_time': r.find('startTime').text,
-                'end_time': r.find('endTime').text,
-                'participant_count': r.find('participantCount').text,
-                'moderator_count': r.find('moderatorCount').text,
-                'moderator_pw': r.find('moderatorPW').text,
-                'attendee_pw': r.find('attendeePW').text,
-                'invite_url': reverse('join', args=[meeting_id]),
-            }
+            d = {'attend_count': r.find('participantCount').text}
             return d
         else:
             return None
@@ -139,7 +132,7 @@ class Meeting(Model):
         else:
             raise
 
-    def join_url(self, user_type):
+    def join_url(self, user_type, user_id):
         call = 'join'
         password = ''
         if user_type == 'teacher':
@@ -150,6 +143,7 @@ class Meeting(Model):
         query = urlencode((
             ('fullName', self.teaching.teacher),
             ('meetingID', self.id),
+            ('userID', user_id),
             ('password', password)
         ))
 

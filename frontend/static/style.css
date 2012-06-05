@@ -1,0 +1,85 @@
+body {
+  font-family: "Trebuchet MS";
+  background-color: #DDDDDD;
+}
+
+a {
+  color: #7F5523;
+}
+
+h1 {
+  text-align: center;
+}
+
+a:hover {
+  color: red;
+}
+
+a:visited {
+  color: #7F5523;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 30px auto 0;
+  border: 2px solid #cecece;
+  padding: 30px;
+  border-radius: 30px 30px 0 0;
+  min-height: 800px;
+  background-color: white;
+}
+
+.menu {
+  margin: 20px auto;
+  border-right: 1px dashed #cccccc;
+}
+
+.menu-container {
+  background: #EEEEEE;
+}
+
+.menu td {
+  padding: 10px;
+  background: #EEEEEE;
+  border-left: 1px dashed #cccccc;
+  border-bottom: 1px solid #dddddd;
+}
+
+.menu td a {
+  text-decoration: none;      
+  font-size: 12pt;
+  color: black;
+}
+
+.menu td a:hover {
+  text-decoration: underline;      
+}
+
+.content {
+}
+
+.table_row:hover {
+  background: #FFEEEE;
+}
+
+.schedule-table {
+  font-size: 14px;
+  text-align: center;
+}
+
+.group-entry {
+  font-size: 20pt;
+}
+
+.meeting-info-labels tr td:first-child {
+  min-width: 150px;
+  font-weight: bold;
+}
+
+.control-panel {
+  font-size: 18px;
+}
+
+.control-panel td {
+  padding-right: 25px;
+}

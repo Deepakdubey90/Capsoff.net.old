@@ -28,9 +28,13 @@
                         {{ form.password }}
                     </td>
                 </tr>
+                <tr>
+                    <td align="center">
+                        <input type="submit" value="Войти" style="width: 90px; height: 30px; margin-top: 10px">
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </td>
+                </tr>
             </table>
-            <input type="submit" value="Войти" />
-            <input type="hidden" name="next" value="{{ next }}" />
         </form>
     </div>
-{% endblock content %}
+{% endblock content %}p

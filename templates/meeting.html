@@ -1,7 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table>
+    <table class="control-panel" valign="middle">
+        <tr>
+        {% if user_type = 'owner' %}
+            {% if meeting.meeting_status == 'GO' %}                
+                <td>
+                    <img src="/static/join.png" valign="middle">
+                    <a href="{{ join_url }}">присоедениться</a>
+                </td>
+                <td>
+                    <img src="/static/stop.png" valign="middle">
+                    <a href="{% url turnoff meeting.id %}">остановить</a>
+                </td>
+            {% else %}
+                <td>
+                    <img src="/static/play.png" valign="middle">
+                    <a href="{% url turnon meeting.id %}">запустить</a>
+                </td>
+            {% endif %}
+        {% else %}
+            {% if user_type = 'viewer' and meeting_status == 'GO' %}
+                <td>
+                    <img src="/static/join.png" valign="middle">
+                    <a href="{{ join_url }}">присоедениться</a>
+                </td>
+            {% endif%}
+        {% endif %}
+        </tr>
+    </table>
+
+    <table class="meeting-info-labels">
         <tr>
             <td>Тип занятия:</td>
             <td>{{ meeting.meeting_type }}</td>
@@ -26,21 +55,14 @@
     
     {% block info %}{% endblock info %}
 
-    <div class="control-panel">
-        {% if user_type = 'owner' %}
-            {% if meeting.meeting_status == 'GO' %}
-                <a href="{{ join_url }}">Присоедениться</a>
-                <a href="{% url turnoff meeting.id %}">Остановить</a>
-            {% else %}
-                <a href="{% url turnon meeting.id %}">Запустить</a>
-            {% endif %}
-            <div>
-                {{ meeting.meeting_info }}
-            </div>
-        {% else %}
-            {% if user_type = 'viewer' and meeting_status == 'GO' %}
-                <a href="{{ join_url }}">Присоедениться</a>
-            {% endif%}
-        {% endif %}
-    </div>
+
+    {% if meeting.meeting_status == 'GO' %}
+        <table class="meeting-info-labels">
+            <tr>
+                <td>Число участников:</td>
+                <td>{{ info.attend_count }}</td>
+            </tr>
+        </table>
+    {% endif %}
+
 {% endblock content %}

@@ -4,7 +4,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from bbb.models import (PeriodicMeeting, SingleMeeting, Meeting)
 from frontend.models import StudentGroup
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 
@@ -27,7 +27,8 @@ def main_schedule_group(request, group_id):
 
     return render_to_response('main_schedule_group.html',
                               {'main_meeting_list': meeting_list,
-                              'group_name': group.get_name()},
+                              'group_name': group.get_name(),
+                              'exclude_group': True},
                               RequestContext(request))
 
 
@@ -49,7 +50,8 @@ def secondary_schedule_group(request, group_id):
 
     return render_to_response('secondary_schedule_group.html',
                               {'secondary_meeting_list': meeting_list,
-                              'group_name': group.get_name()},
+                              'group_name': group.get_name(),
+                              'exclude_group': True},
                               RequestContext(request))
 
 
@@ -79,8 +81,11 @@ def show_meeting(request, meeting_id):
     params = {'meeting': meeting, 'user_type': user_type}
 
     if meeting.meeting_status == 'GO':
-        url = meeting.join_url(request.user.get_profile().get_type())
+        url = meeting.join_url(request.user.get_profile().get_type(),
+                               request.user.id)
         params['join_url'] = url
+
+        params['info'] = meeting.info()
 
     return render_to_response(template, params,
                               RequestContext(request))
@@ -99,8 +104,8 @@ def start_meeting(request, meeting_id):
 @login_required
 def stop_meeting(request, meeting_id):
     meeting = Meeting.objects.get(pk=meeting_id)
+    meeting.meeting_status = 'EN'
     meeting.stop()
-    meeting.meeting_status = 'PL'
     meeting.save()
     return HttpResponseRedirect(reverse('frontend.schedule.show_meeting',
                                 args=(meeting_id, )))

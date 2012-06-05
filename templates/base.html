@@ -2,108 +2,56 @@
 <head>
   <title>Capsoff.net</title>
   <style>
-    body {
-      font-family: "Trebuchet MS";
-    }
-
-    a {
-      color: #7F5523;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    a:hover {
-      color: red;
-    }
-
-    a:visited {
-      color: #7F5523;
-    }
-
-    .menu {
-      margin: 20px auto;
-      border-right: 1px dashed #cccccc;
-    }
-
-    .menu-container {
-      background: #EEEEEE;
-    }
-
-    .menu td {
-      padding: 10px;
-      background: #EEEEEE;
-      border-left: 1px dashed #cccccc;
-      border-bottom: 1px solid #dddddd;
-    }
-
-    .metu td:last-child {
-      border-right: 1px dashed #cccccc;
-    }
-    
-    .menu td a {
-      text-decoration: none;      
-      font-size: 12pt;
-      color: black;
-    }
-
-    .menu td a:hover {
-      text-decoration: underline;      
-    }
-
-    .content {
-      width: 800px;
-      margin: 0 auto;
-    }
-
-    .table_row:hover {
-      background: #FFEEEE;
-    }
-
-    .schedule-table {
-      font-size: 12px;
-    }
-
     {% block css %}{% endblock css %}
   </style>
+
+  <link rel="stylesheet" media="all" href="/static/style.css">
 </head>
 <body>
+  <div class="wrapper">
+    <div class="head">
+        {% if request.user.is_authenticated %}
+              Вы вошли как 
+              
+              {% if request.user.get_profile.get_type == 'student' %}
+                студент
+              {% endif %}
 
-<div>
-    {% if request.user.is_authenticated %}
-          Вы вошли как 
-          {{ request.user.last_name }} 
-          {{ request.user.first_name.0 }}.
-          {{ request.user.get_profile.middle_name.0 }}.
-          {% if request.user.get_profile.get_type == 'student' %}
-              из группы {{ request.user.student.group }}.
-          {% endif %}
-        
-        <a href="{% url logout %}">Выйти</a>
-    {% else %}
-        <a href="{% url login %}">Войти</a>        
-        <a href="{% url registration_register %}">Регистрация</a>
-    {% endif %}
+              {% if request.user.get_profile.get_type == 'teacher' %}
+                {{ request.user.teacher.degree }}  
+              {% endif %}
+              {{ request.user.last_name }} 
+              {{ request.user.first_name.0 }}.
+              {{ request.user.get_profile.middle_name.0 }}.
+              {% if request.user.get_profile.get_type == 'student' %}
+                  из группы {{ request.user.student.group }}.
+              {% endif %}
+            
+            <a href="{% url logout %}">Выйти</a>
+        {% else %}
+            <a href="{% url login %}">Войти</a>        
+            <a href="{% url registration_register %}">Регистрация</a>
+        {% endif %}
 
-</div>
+    </div>
 
-<div class="menu-container">
-  <table class="menu" cellspacing="0">
-    <tr>
-      <td><a href="{% url home %}">Главная</a>
-    </td>
-    <td>
-      <a href="{% url main-schedule %}">Основное расписание</a>
-    </td>
-    <td>
-      <a href="{% url secondary-schedule %}">Второстепенное расписание</a>
-    </td>
-  </table>  
-</div>
+    <div class="menu-container">
+      <table class="menu" cellspacing="0">
+        <tr>
+          <td><a href="{% url home %}">Главная</a>
+        </td>
+        <td>
+          <a href="{% url main-schedule %}">Основное расписание</a>
+        </td>
+        <td>
+          <a href="{% url secondary-schedule %}">Второстепенное расписание</a>
+        </td>
+      </table>  
+    </div>
 
-<div class="content">
-  {% block content %}{% endblock content %}
-</div>
+    <div class="content">
+      {% block content %}{% endblock content %}
+    </div>
+  </div>
 </body>
 </html>

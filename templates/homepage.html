@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Ваше основное расписание:</h1>
-    {% include "main_schedule_table.html" %}
+    {% if main_meeting_list|length != 0 %}
+        <h1>Ваше основное расписание:</h1>
+        {% include "main_schedule_table.html" %}
 
-    <br>
+        <br>
+    {% endif %}
 
-    <h1>Ваше второстепенное расписание</h1>
-    {% include "secondary_schedule_table.html" %}
+    {% if secondary_meeting_list|length != 0 %}
+        <h1>Ваше второстепенное расписание</h1>
+        {% include "secondary_schedule_table.html" %}
+    {% endif %}
 {% endblock content %}

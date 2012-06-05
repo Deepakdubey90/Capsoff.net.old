@@ -24,8 +24,6 @@ admin.site.register(Attendance)
 
 
 class ValidationAdmin(admin.ModelAdmin):
-    #readonly_fields = ('user', 'invite')
-
     list_display = ('user', 'invite')
 
 
