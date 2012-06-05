@@ -1,0 +1,37 @@
+<table border="1" cellpadding="10" bordercolor="#cecece" cellspacing="2" align="center" class="schedule-table">
+    <tr style="background: #EEEEEE">
+        {% if not exclude_group %}        
+            <th>Группа</th>
+        {% endif %}
+
+        {% if not exclude_teacher %}
+            <th>Преподаватель</th>    
+        {% endif %}
+
+        <th>Предмет</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Дата</th>
+        <th>Информация</th>
+    </tr>
+{% for meeting in secondary_meeting_list %}
+    <tr class="table_row">
+        {% if not exclude_group %}
+            <td>{{ meeting.group }}</td>
+        {% endif %}
+
+        {% if not exclude_teacher %}
+            <td>{{ meeting.teaching.teacher }}</td>
+        {% endif %}
+
+        <td>{{ meeting.teaching.subject }}</td>
+        <td>{{ meeting.name }}</td>
+        <td>{{ meeting.desc }}</td>
+        <td>{{ meeting.date }}</td>
+        <td><a href="{% url show-meeting meeting.id %}">Открыть</a></td>
+    </tr>
+{% endfor %}
+</table>
+
+
+

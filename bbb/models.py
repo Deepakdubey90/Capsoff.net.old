@@ -5,6 +5,7 @@ from django.db.models import (Model, CharField, ForeignKey, DateTimeField, Small
 
 from frontend.models import (StudentGroup, Student, Teaching)
 
+
 from django import forms
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -30,20 +31,39 @@ def parse(response):
 
 class MeetingType(Model):
     """Type of meeting"""
-    name = CharField(max_length=255)
+    name = CharField(verbose_name='Название', max_length=255)
 
     def __unicode__(self):
         return u'%s' % (self.name, )
 
+    class Meta:
+        verbose_name = u'Тип занятия'
+        verbose_name_plural = u'Типы занятий'
+
 
 class Meeting(Model):
+    """Any meeting"""
+    MEETING_STATUS_CHOICES = (
+                              ('PL', u'Запланировано'),
+                              ('MV', u'Перенесено'),
+                              ('CS', u'Отменено'),
+                              ('GO', u'Идет'),
+                              ('EN', u'Проведено')
+                              )
 
-    classroom = CharField(max_length=5)
-    group = ForeignKey(StudentGroup)
-    meeting_type = ForeignKey(MeetingType)
-    teaching = ForeignKey(Teaching)
+    group = ForeignKey(StudentGroup, verbose_name='Для группы')
+    meeting_type = ForeignKey(MeetingType, verbose_name='Тип занятия')
+    meeting_status = CharField(max_length=255, default='PL',
+                               choices=MEETING_STATUS_CHOICES,
+                               verbose_name='Статус занятия')
+    teaching = ForeignKey(Teaching, verbose_name='Предмет')
 
-    @classmethod
+    class Meta:
+        permissions = (
+            ('start_meeting', u'Запускать занятия'),
+            ('end_meeting', u'Завершать занятия'),
+        )
+
     def api_call(self, query, call):
         prepared = "%s%s%s" % (call, query, settings.SALT)
         checksum = sha1(prepared).hexdigest()
@@ -63,12 +83,11 @@ class Meeting(Model):
         else:
             return 'error'
 
-    @classmethod
-    def end_meeting(self, meeting_id, password):
+    def stop(self):
         call = 'end'
         query = urlencode((
-            ('meetingID', meeting_id),
-            ('password', password),
+            ('meetingID', self.id),
+            ('password', 'moder'),
         ))
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
@@ -78,12 +97,10 @@ class Meeting(Model):
         else:
             return 'error'
 
-    @classmethod
     def meeting_info(self, meeting_id, password):
         call = 'getMeetingInfo'
         query = urlencode((
-            ('meetingID', meeting_id),
-            ('password', password),
+            ('meetingID', self.id),
         ))
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
@@ -103,45 +120,16 @@ class Meeting(Model):
         else:
             return None
 
-    @classmethod
-    def get_meetings(self):
-        call = 'getMeetings'
-        query = urlencode((
-            ('random', 'random'),
-        ))
-        hashed = self.api_call(query, call)
-        url = settings.BBB_API_URL + call + '?' + hashed
-        result = parse(urlopen(url).read())
-        if result:
-            # Create dict of values for easy use in template
-            d = []
-            r = result[1].findall('meeting')
-            for m in r:
-                meeting_id = m.find('meetingID').text
-                password = m.find('moderatorPW').text
-                d.append({
-                    'name': meeting_id,
-                    'running': m.find('running').text,
-                    'moderator_pw': password,
-                    'attendee_pw': m.find('attendeePW').text,
-                    'info': Meeting.meeting_info(
-                        meeting_id,
-                        password)
-                })
-            return d
-        else:
-            return 'error'
-
     def start(self):
-        call = 'create' 
-        voicebridge = 70000 + random.randint(0,9999)
+        call = 'create'
+        voicebridge = 70000 + random.randint(0, 9999)
         query = urlencode((
-            ('name', self.name),
-            ('meetingID', self.meeting_id),
-            ('attendeePW', self.attendee_password),
-            ('moderatorPW', self.moderator_password),
+            ('meetingID', self.id),
+            ('attendeePW', 'attend'),
+            ('moderatorPW', 'moder'),
+            #('logoutURL', reverse('home')),
             ('voiceBridge', voicebridge),
-            ('welcome', "Welcome!"),
+            ('welcome', "Welcome"),
         ))
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
@@ -151,47 +139,40 @@ class Meeting(Model):
         else:
             raise
 
-    @classmethod
-    def join_url(self, meeting_id, name, password):
+    def join_url(self, user_type):
         call = 'join'
+        password = ''
+        if user_type == 'teacher':
+            password = 'moder'
+        else:
+            password = 'attend'
+
         query = urlencode((
-            ('fullName', name),
-            ('meetingID', meeting_id),
-            ('password', password),
+            ('fullName', self.teaching.teacher),
+            ('meetingID', self.id),
+            ('password', password)
         ))
+
         hashed = self.api_call(query, call)
         url = settings.BBB_API_URL + call + '?' + hashed
         return url
 
-    class CreateForm(forms.Form):
-        name = forms.SlugField()
-        attendee_password = forms.CharField(
-            widget=forms.PasswordInput(render_value=False))
-        moderator_password= forms.CharField(
-            widget=forms.PasswordInput(render_value=False))
-
-        def clean(self):
-            data = self.cleaned_data
-
-            # TODO: should check for errors before modifying
-            data['meeting_id'] = data.get('name')
-
-            if Meeting.objects.filter(name = data.get('name')):
-                raise forms.ValidationError("That meeting name is already in use")
-            return data
-
-    class JoinForm(forms.Form):
-        name = forms.CharField(label="Your name")
-        password = forms.CharField(
-            widget=forms.PasswordInput(render_value=False))
+    def __unicode__(self):
+        return u"%s. %s" % (self.meeting_type, self.teaching)
 
 
 class SingleMeeting(Meeting):
     """Nonperiodic signle meeting"""
-    name = CharField(max_length=512)
-    desc = TextField()
-    date = DateTimeField()
-    is_over = BooleanField()
+    name = CharField(max_length=512, verbose_name='Тема')
+    desc = TextField(verbose_name='Описание')
+    date = DateTimeField(verbose_name='Дата')
+
+    class Meta:
+        verbose_name = u'однократное занятие'
+        verbose_name_plural = u'Однократные занятия'
+
+    def __unicode__(self):
+        return u'%s - %s' % (self.name, self.teaching)
 
 
 class PeriodicMeeting(Meeting):
@@ -213,30 +194,40 @@ class PeriodicMeeting(Meeting):
                         )
 
     PAIR_NUM_CHOICES = (
-                        ('1', u'1'),
-                        ('2', u'2'),
-                        ('3', u'3'),
-                        ('4', u'4'),
-                        ('5', u'5'),
-                        ('6', u'6'),
-                        ('7', u'7'),
-                        ('8', u'8'),
+                        ('1', u'1. 08:30-09:50'),
+                        ('2', u'2. 10:00-11:20'),
+                        ('3', u'3. 12:00-13:20'),
+                        ('4', u'4. 13:30-14:50'),
+                        ('5', u'5. 15:00-16:20'),
+                        ('6', u'6. 16:30-17:50'),
+                        ('7', u'7. 18:00-19:20'),
+                        ('8', u'8. 19:30-20:50'),
                         )
 
-    flashing = CharField(max_length=2, choices=FLASHING_CHOICES)
-    week_day = CharField(max_length=2, choices=WEEK_DAY_CHOICES)
-    pair_num = CharField(max_length=2, choices=PAIR_NUM_CHOICES)
+    flashing = CharField(verbose_name='Чередование',
+                         max_length=2,
+                         choices=FLASHING_CHOICES)
 
+    week_day = CharField(verbose_name='День недели',
+                         max_length=2,
+                         choices=WEEK_DAY_CHOICES)
 
-class Record(Model):
-    """Record files of the meeting"""
-    meeting = ForeignKey(Meeting)
-    date = DateTimeField()
-    path = FilePathField(path="/path")
+    pair_num = CharField(verbose_name='Номер пары',
+                         max_length=2,
+                         choices=PAIR_NUM_CHOICES)
+
+    class Meta:
+        verbose_name = u'периодическое занятие'
+        verbose_name_plural = u'Периодические занятия'
+        #ordering = ['week_day', 'pair_num']
 
 
 class Attendance(Model):
     """Student attendance on meetings"""
-    student = ForeignKey(Student)
-    meeting = ForeignKey(Meeting)
-    date = DateTimeField()
+    student = ForeignKey(Student, verbose_name='Студент')
+    meeting = ForeignKey(Meeting, verbose_name='Занятие')
+    date = DateTimeField(verbose_name='Дата')
+
+    class Meta:
+        verbose_name = u'посещаемость'
+        verbose_name_plural = u'посещаемость'

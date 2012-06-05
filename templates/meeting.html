@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>Тип занятия:</td>
+            <td>{{ meeting.meeting_type }}</td>
+        </tr>
+        <tr>
+            <td>Статус занятия:</td>
+            <td>{{ meeting.get_meeting_status_display }}</td>
+        </tr>
+        <tr>
+            <td>Группа:</td>
+            <td>{{ meeting.group }}</td>
+        </tr>        
+        <tr>
+            <td>Преподаватель:</td>
+            <td>{{ meeting.teaching.teacher }}</td>
+        </tr>
+        <tr>
+            <td>Предмет:</td>
+            <td>{{ meeting.teaching.subject }}</td>
+        </tr>
+    </table><br>
+    
+    {% block info %}{% endblock info %}
+
+    <div class="control-panel">
+        {% if user_type = 'owner' %}
+            {% if meeting.meeting_status == 'GO' %}
+                <a href="{{ join_url }}">Присоедениться</a>
+                <a href="{% url turnoff meeting.id %}">Остановить</a>
+            {% else %}
+                <a href="{% url turnon meeting.id %}">Запустить</a>
+            {% endif %}
+            <div>
+                {{ meeting.meeting_info }}
+            </div>
+        {% else %}
+            {% if user_type = 'viewer' and meeting_status == 'GO' %}
+                <a href="{{ join_url }}">Присоедениться</a>
+            {% endif%}
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "meeting.html" %}
+
+{% block info %}
+    <table>        
+        <tr>
+            <td>Тема:</td>
+            <td>{{ meeting.singlemeeting.name }}</td>
+        </tr>
+        <tr>
+            <td>Описание:</td>
+            <td>{{ meeting.singlemeeting.desc }}</td>
+        </tr>
+        <tr>
+            <td>Дата:</td>
+            <td>{{ meeting.singlemeeting.name }}</td>
+        </tr>
+    </table>    
+{% endblock info %}

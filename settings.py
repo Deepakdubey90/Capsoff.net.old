@@ -102,6 +102,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'capsoff_net.urls'
 
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'frontend/login'
+
 TEMPLATE_DIRS = (
     "/home/moisizz/server/capsoff_net/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -109,14 +112,21 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+  'django.contrib.auth.context_processors.auth',
+  'django.core.context_processors.request',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
+#    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'registration',
+    'admin',
     'bbb',
     'frontend',
     # Uncomment the next line to enable the admin:
@@ -124,6 +134,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+AUTH_PROFILE_MODULE = 'frontend.UserAccount'
+BBB_API_URL = 'http://192.168.56.101/bigbluebutton/api/'
+SALT = '99300ea7ebf2f2fff0124a117908d350'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

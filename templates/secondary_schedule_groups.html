@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    Выберите группу для просмотра расписания
+    {% for group in group_list %}
+        <div>
+            <a href="{% url secondary-schedule-group group.id %}">
+                {{ group }}
+            </a>
+        </div>
+    {% endfor %}    
+{% endblock content %}

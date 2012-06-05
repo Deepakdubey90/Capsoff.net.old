@@ -1,37 +1,68 @@
 <html>
 <head>
-  <title>Capsoff.net - {% block title %}{% endblock title %}</title>
+  <title>Capsoff.net</title>
   <style>
     body {
       font-family: "Trebuchet MS";
     }
 
+    a {
+      color: #7F5523;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    a:hover {
+      color: red;
+    }
+
+    a:visited {
+      color: #7F5523;
+    }
+
     .menu {
       margin: 20px auto;
-      overflow: hidden;      
-      list-style: none;
+      border-right: 1px dashed #cccccc;
     }
 
-    .menu li {
-      float: left;
-      margin-left: 10px;
+    .menu-container {
+      background: #EEEEEE;
+    }
+
+    .menu td {
       padding: 10px;
-      background: #dddddd;
+      background: #EEEEEE;
+      border-left: 1px dashed #cccccc;
+      border-bottom: 1px solid #dddddd;
     }
 
-    .menu li a {
+    .metu td:last-child {
+      border-right: 1px dashed #cccccc;
+    }
+    
+    .menu td a {
       text-decoration: none;      
       font-size: 12pt;
       color: black;
     }
 
-    .menu li a:hover {
+    .menu td a:hover {
       text-decoration: underline;      
     }
 
-    body {
-      width: 900px;
+    .content {
+      width: 800px;
       margin: 0 auto;
+    }
+
+    .table_row:hover {
+      background: #FFEEEE;
+    }
+
+    .schedule-table {
+      font-size: 12px;
     }
 
     {% block css %}{% endblock css %}
@@ -39,16 +70,40 @@
 </head>
 <body>
 
-<ul class="menu">
-  <li><a href="{% url meetings %}">Главная</a></li>
-  <li><a href="{% url chairs %}">Кафедры</a></li>
-  <li><a href="{% url groups %}">Группы</a></li>
-  <li><a href="{% url subjects %}">Предметы</a></li>
-</ul>
-  
+<div>
+    {% if request.user.is_authenticated %}
+          Вы вошли как 
+          {{ request.user.last_name }} 
+          {{ request.user.first_name.0 }}.
+          {{ request.user.get_profile.middle_name.0 }}.
+          {% if request.user.get_profile.get_type == 'student' %}
+              из группы {{ request.user.student.group }}.
+          {% endif %}
+        
+        <a href="{% url logout %}">Выйти</a>
+    {% else %}
+        <a href="{% url login %}">Войти</a>        
+        <a href="{% url registration_register %}">Регистрация</a>
+    {% endif %}
 
-{% block content %}{% endblock content %}
+</div>
 
+<div class="menu-container">
+  <table class="menu" cellspacing="0">
+    <tr>
+      <td><a href="{% url home %}">Главная</a>
+    </td>
+    <td>
+      <a href="{% url main-schedule %}">Основное расписание</a>
+    </td>
+    <td>
+      <a href="{% url secondary-schedule %}">Второстепенное расписание</a>
+    </td>
+  </table>  
+</div>
 
+<div class="content">
+  {% block content %}{% endblock content %}
+</div>
 </body>
 </html>

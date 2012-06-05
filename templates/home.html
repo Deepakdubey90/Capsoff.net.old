@@ -2,7 +2,7 @@
 
 {% block title %}Главная страница{% endblock title %}
 
-{% block content %}
-
+{% block content %}    
+  {{ request.user.get_profile.get_type }}
 {% endblock content %}
 

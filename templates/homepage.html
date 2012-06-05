@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Ваше основное расписание:</h1>
+    {% include "main_schedule_table.html" %}
+
+    <br>
+
+    <h1>Ваше второстепенное расписание</h1>
+    {% include "secondary_schedule_table.html" %}
+{% endblock content %}

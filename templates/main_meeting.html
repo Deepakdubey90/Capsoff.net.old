@@ -1,0 +1,18 @@
+{% extends "meeting.html" %}
+
+{% block info %}
+    <table>
+        <tr>
+            <td>Чередование:</td>
+            <td>{{ meeting.periodicmeeting.get_flashing_display }}</td>
+        </tr>
+        <tr>
+            <td>День недели:</td>
+            <td>{{ meeting.periodicmeeting.get_week_day_display }}</td>
+        </tr>
+        <tr>
+            <td>Пара:</td>
+            <td>{{ meeting.periodicmeeting.get_pair_num_display }}</td>
+        </tr>
+    </table>
+{% endblock info %}
